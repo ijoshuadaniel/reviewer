@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js",
-    "chat": "nodemon chatgpt.js"
+    "start": "node index.js",
+    "pm2": "pm2 start npm --name 'ui' -- run start --watch "
   },
   "dependencies": {
     "node-cron": "^3.0.3",
