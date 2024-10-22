@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "pm2": "pm2 start npm --name 'ui' -- run start --watch "
+    "pm2": "pm2 start npm --name 'trustpilot' -- run start --watch "
   },
   "dependencies": {
     "node-cron": "^3.0.3",
