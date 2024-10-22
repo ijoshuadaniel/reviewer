@@ -6,3 +6,5 @@ cron.schedule("0 0 * * *", async () => {
   await writeReview();
   console.log("completed Automation");
 });
+
+writeReview();

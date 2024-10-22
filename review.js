@@ -4,16 +4,18 @@ const writeReview = async () => {
   const browser = await puppeteer.launch({
     headless: false,
   });
+  console.log("Navigating to gpt.");
 
   const gpt = await browser.newPage();
   await gpt.goto("https://deepai.org/chat/free-chatgpt", {
     waitUntil: "networkidle2",
   });
+  console.log("Getting Data from gpt.");
 
   await gpt.waitForSelector("textarea.chatbox");
   await gpt.type(
     "textarea.chatbox",
-    "Give me a general review for cloudnest.in. the context of the webiste is they provide domain,shared hosting, reseller hosting, vps, and ssl. write me general purpose review of 4 lines and give me a random indain name for review and give me in the json format like {name:'', review:''} also pick a random service and give the review for it"
+    `Write a general-purpose review for the website "cloudnest.in," which provides domain registration, shared hosting, reseller hosting, VPS, and SSL services. The review should be 4 lines long and cover their services in general. Select a random Indian name as the reviewer's name, and mention a random service (like shared hosting or VPS) in the review. give me in the json format like {name:'', review:''}`
   );
   await gpt.keyboard.press("Enter");
 
@@ -31,8 +33,9 @@ const writeReview = async () => {
     return JSON.parse(jsonText);
   });
 
-  // Log the extracted JSON data
+  console.log("Data Extracted from gpt. ");
   console.log(jsonData);
+  console.log("Getting Email.");
 
   const page = await browser.newPage();
 
@@ -66,7 +69,8 @@ const writeReview = async () => {
     return;
   }
 
-  console.log("Generated Email:", emailValue);
+  console.log("Got Email." + emailValue);
+  console.log("On The Trustpilot page.");
 
   const trustpilotPage = await browser.newPage();
   await trustpilotPage.goto(
@@ -114,6 +118,9 @@ const writeReview = async () => {
   await trustpilotPage.waitForSelector('button[data-signup-button="true"]');
   await trustpilotPage.click('button[data-signup-button="true"]');
 
+  console.log("Added details on Trustpilot page.");
+  console.log("Getiing code from mail.");
+
   const pages = await browser.pages();
   const tempEmailPage = pages.find((p) => p.url().includes("tempmailso.com"));
   await tempEmailPage.bringToFront();
@@ -133,8 +140,8 @@ const writeReview = async () => {
     await browser.close();
     return;
   }
-
-  console.log("Retrieved Code:", code);
+  console.log("got code from mail." + code);
+  console.log("enntering code to trustpilot.");
 
   const trustpilotpage2 = pages.find((p) => p.url().includes("trustpilot.com"));
   await trustpilotpage2.bringToFront();

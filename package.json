@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "pm2": "pm2 start npm --name 'trustpilot' -- run start --watch "
